@@ -7,7 +7,7 @@ parted /dev/nvme0n1 mkpart primary fat32 0% 512MB
 #CRIANDO PARTIÇÃO /
 parted /dev/nvme0n1 mkpart primary ext4 512MB 100%
 #CRIANDO TABELA DE PARTIÇÃO PARA DISCO 2
-parted /dev/sda1 mklabel gpt
+parted /dev/sda mklabel gpt
 #CRIANDO PARTIÇÃO QUE VAI SER A HOME
 parted /dev/sda1 mkpart primary ext4 0% 100%
 #CONFERINDO PARTIÇÕES
