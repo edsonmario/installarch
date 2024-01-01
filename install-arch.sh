@@ -9,24 +9,24 @@ parted /dev/nvme0n1 mkpart primary ext4 512MB 100%
 #CRIANDO TABELA DE PARTIÇÃO PARA DISCO 2
 parted /dev/sda mklabel gpt
 #CRIANDO PARTIÇÃO QUE VAI SER A HOME
-parted /dev/sda1 mkpart primary ext4 0% 100%
+parted /dev/sda mkpart primary ext4 0% 100%
 #CONFERINDO PARTIÇÕES
 clear
 parted /dev/nvme0n1 print
-parted /dev/sda1 print
+parted /dev/sda print
 sleep5
 #FORMATANDO ROOT
 mkfs.ext4 /dev/nvme0n1p2
 #FORMATANDO EFI
 mkfs.fat -F 32 /dev/nvme0n1p1
 #FORMATANDO A HOME
-mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda
 #MONTANDO /
 mount /dev/nvme0n1p2 /mnt
 #MONTANDO /EFI
 mount --mkdir /dev/nvme0n1p1 /mnt/efi
 #MONTANDO /HOME
-mount --mkdir /dev/sda1 /mnt/home
+mount --mkdir /dev/sda /mnt/home
 #CONFIGURANDO O PACMAN.CONF
 sed -i '/^#.*Color/s/^#//' /etc/pacman.conf
 sed -i '/^#.*ParallelDownloads/s/^#//' /etc/pacman.conf
